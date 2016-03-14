@@ -1,0 +1,24 @@
+<h4>自定义指令</h4>
+<hr/>
+
+<h3>1.为啥要用指令?</h3>
+<span>既然浏览器能识别 p,span,div,table等标签.那么为什么angular还要引入指令这一个概念呢</span>
+
+<div><strong>1.封装dom操作:</strong></div>
+<p>
+    操作dom很简单.但如果操作的太频繁.肯定会遗留很多维护问题.特别是动态DOM.例如:我们要实现一个前端分页的控件.
+    一般流程是.先写好div+css.然后写js.用的时候还会遇到变量名冲突等问题.而且代码非常难维护.用angular的指令来写会是什么样呢?
+    pagination.一个简单的标签就搞定.集成事件,属性.用的时候直接给属性赋值就OK了.和React的组件非常相似.React
+    也是一个非常好的V层框架.非常适合移动端
+
+</p>
+
+<div><strong>2.事件绑定:</strong></div>
+<p>
+    我们一般用到angular内置的指令例如:ng-click,ng-select等都是为了给某个dom元素添加一个响应事件.相比原生的
+    onclick来说.相当于angular添加了一些自己的东西到事件里.就像脏检查.ng-modal将view和modal通过$scope绑定在一起.
+    触发事件后.自动执行脏检查.并及时更新view.
+</p>
+
+
+

@@ -1,0 +1,74 @@
+<h4>目录结构</h4>
+<hr/>
+<p>
+    刚开始的时候,我的目录是完全按照官网的demo来组织目录的,就像下面这样.看上去很好.但是在项目比较大的时候.MainController会变的无比的庞大与臃肿.并且维护成本很高.修改某一个功能.你可能就像大海捞针一样在MainController中苦苦的寻找.而且,很难看出文件之间的依赖关系.只知道所有的业务逻辑都分配在了MainController,MainService中.如果service中有重用的功能的话.很难复用.
+</p>
+<ul>
+    <li>controllers/</li>
+    <ul>
+        <li>LoginController.js</li>
+        <li>MainController.js</li>
+        <li>OtherController.js</li>
+    </ul>
+    <li>directives.js</li>
+    <li>filters.js</li>
+
+    <li>services/</li>
+    <ul>
+        <li>LoginService.js</li>
+        <li>MainService.js</li>
+        <li>OtherService.js</li>
+    </ul>
+</ul>
+
+既然如此,我想并不能只局限于angular本身的controller,service来组织目录.应该从业务功能来划分.于是目录就像这样
+<ul>
+    <li>modules/
+        <ul>
+            <li>login/
+                <ul>
+                    <li>app.login.js</li>
+                    <li>login.controller.js</li>
+                    <li>login.service.js</li>
+                    <li>login.directive.js</li>
+                </ul>
+            </li>
+            <li>users/</li>
+            <li>point/</li>
+        </ul>
+    </li>
+
+    <li>common
+        <ul>
+            <li>common.service.js</li>
+            <li>common.directive.js</li>
+        </ul>
+    </li>
+    <li>templates
+        <ul>
+            <li>login</li>
+            <li>user</li>
+            <li>point</li>
+        </ul>
+    </li>
+    <li>app.js</li>
+</ul>
+
+这样按业务模块划分，就清晰多了.虽然文件看起来有点繁琐.不过后期维护相当方便.一眼就能看出文件的功能.
+如果一个功能的controller.service不是很多就可以合并成一个js文件.例如login模块.login文件夹下面就可以只有login.js
+。用来处理登录的业务逻辑.templates文件夹下面放置模块内的html文件.这样.如果后期需要添加或者修改某些业务功能.就非常方便了.添加一个功能模块.在module新建文件后.在app.js(入口js文件中依赖改模块)就行了.下图是该项目的目录结构:
+<img src="imgs/dir.png" alt="目录"/>
+
+<p>==========================我是华丽的分割线=========================</p>
+<h4>是的,你猜的没错.问题又来了!!!!</h4>
+<hr/>
+
+随着功能的增加.我的index.html入口文件会变得越来越多.script标签写的我很烦躁.怎么办?有几种解决办法
+<ul>
+    <li>1.引入js的AMD.例如require.js.然后配置模块.不过比较繁琐.容易被js的模块和angular的模块概念搞晕.</li>
+    <li>2.利用项目构建工具Gulp,Grunt.Webpack.压缩合并js文件.这样就可以减少http请求数.适合线上环境(目前感觉较好的办法)</li>
+    <li>3.根据模块来引入js文件.例如:index.html只需引入index.html所需js.进入login模块之后.在login.html才引入login.js</li>
+</ul>
+<h3>
+    总的来说。把握几个原则:易维护,扩展性强,快速简洁。
+</h3>

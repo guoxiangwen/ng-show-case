@@ -1,0 +1,20 @@
+
+<div class="btn-group" ng-init="vm.activeTab = 1">
+  <span class="btn btn-default" ng-class="{active:vm.activeTab == 1}" ng-click="vm.activeTab = 1">HTML</span>
+<!--   <span class="btn btn-default" ng-class="{active:vm.activeTab == 2}" ng-click="vm.activeTab = 2">CSS</span> -->
+  <span class="btn btn-default" ng-class="{active:vm.activeTab == 3}" ng-click="vm.activeTab = 3">Javascript</span>
+</div>
+
+<div class="tab-content tab-bordered">
+  <pre>
+    <code ng-show="vm.activeTab == 1">
+      {{vm.html}}
+    </code>
+<!--     <code ng-show="vm.activeTab == 2">
+  css
+</code> -->
+    <code ng-show="vm.activeTab == 3">
+      {{vm.js}}
+    </code>
+  </pre>
+</div>

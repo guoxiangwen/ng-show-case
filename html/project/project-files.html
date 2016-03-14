@@ -1,0 +1,31 @@
+<h4>文件命名</h4>
+<hr/>
+<div class="row">
+    当项目里面文件多了.项目大了。命名变得很重要.如果在维护的过程中快速找到某个文件.
+    这就需要我们在开发的过程中就做好命名的规划
+</div>
+<hr/>
+<div class="row">
+    <strong>1.js命名:</strong>
+    在Angular项目中 会有一个叫app.js的程序入口文件.这是项目的启动文件.个人也比较喜欢命名为app.js.
+    里面的app.config,app.run.负责启动Angular程序.然后就分模块命名:例如:这个项目你要根据业务逻辑或者view
+    分成几个模块.可以分别为每个模块建一个app.xxx.js!!!作为该模块的启动文件. 用点号来区分上下级关系.模块里面的
+    controller,service,filter.可以分别为:ctrl.xxx.js.如果一个模块下有很多controller.可用ctrl.xxx.yyy.js
+    yyy代表改模块的controller名字.这样层级关系就非常清楚了.只要看见ctrl就知道是一个controller。专门负责处理
+    业务逻辑的.service等一次类推.
+</div>
+<hr/>
+<div class="row">
+    <strong>2.css命名:</strong>
+    css的命名 建议直接跟着view来走.因为我们在调试css的时候。基本都是直接在该view下面找路径.命名可直接参考js
+    例如:app.css app-xxx.css 这里用 - 来间隔 个人喜好.
+</div>
+
+<hr/>
+<div class="row">
+    <strong>2.html命名:</strong>
+    html的命名 和css差不多。只要放在对应的文件夹下面,然后"文件夹名-业务名"就行了
+</div>
+<img src="imgs/dir.png" alt=""/>
+
+

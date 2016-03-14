@@ -1,0 +1,26 @@
+{
+  "name": "Angular",
+  "version": "1.0.0",
+  "authors": [
+    "郭向文 <xiangwen.guo@changhong.com>"
+  ],
+  "description": "angular",
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.6",
+    "angular-bootstrap": "~0.13.4",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "highlightjs": "~8.8.0"
+  }
+}

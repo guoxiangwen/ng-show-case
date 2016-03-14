@@ -1,0 +1,10 @@
+table thead th {
+  cursor: default;
+}
+th,tr,td{
+    text-align: center;
+}
+
+.global-search {
+  margin-bottom: 20px;
+}

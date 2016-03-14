@@ -1,0 +1,28 @@
+{
+  "name": "angularjs",
+  "version": "1.0.0",
+  "description": "angular项目总结",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.chiqdata.com:FrontEnd/AngularJS.git"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^3.1.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-ng-annotate": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2",
+    "gulp-webserver": "^0.9.1"
+  }
+}

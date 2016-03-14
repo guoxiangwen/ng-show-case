@@ -1,0 +1,50 @@
+<h4>控制器通信(超实用)</h4>
+<hr />
+
+
+<h5>1.controller内部通信</h5>
+<label for="">选择书籍类目</label>
+<select ng-change="vm.changeBook()" ng-model="vm.selection" >
+	<option value="java">Java</option>
+	<option value="javascript">Javascript</option>
+</select>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>id</th>
+			<th>书名</th>
+			<th>价格</th>
+			<th>作者</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="book in vm.books">
+			<td ng-bind="book.id"></td>
+			<td ng-bind="book.name"></td>
+			<td ng-bind="book.price"></td>
+			<td ng-bind="book.author"></td>
+		</tr>
+	</tbody>
+</table>
+<div class="alert alert-info">
+  这里使用ng-change事件指令来达到自动检查表格数据的变化
+  ng内置的指令都会自动执行脏检查
+</div>
+
+
+<h5>2.controller之间通信</h5>
+<hr />
+ <div ng-controller="ctrl.scene-controller-parent">
+ <label>父级Par<input type="text" ng-model="name_par"></label>
+    <div ng-controller="ctrl.scene-controller-childOne">
+        <label>子级One<input type="text" ng-model="name_ch1" ng-change="change(name_ch1);" placeholder="输入任意字符"></label>
+
+    </div>
+
+    <div ng-controller="ctrl.scene-controller-childTwo">
+        <label>子级Two<input type="text" ng-model="name_ch2"></label>
+    </div>
+ </div>
+<div class="alert alert-info">
+        在子级One的input中ng-change事件通过$emit事件传给父级，父级通过$broadcast向下传递给子级,用$on来侦听事件
+</div>

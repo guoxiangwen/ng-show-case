@@ -1,0 +1,113 @@
+<h4>服务</h4>
+<hr/>
+<div class="row">
+    <h3>1.什么是 Provider?</h3>
+    provider 可以为应用提供通用的服务，形式可以是常量，也可以是对象。
+    比如我们在 controller 里注入进来的 $http, $scope 都可以认为是 provider。
+    <pre>
+app.controller('MainCtrl', function ($scope, $http) {
+
+  $http.get(....).then(.....);
+
+}
+    </pre>
+    <h4>1.1我们自己来定义一个provider</h4>
+    <pre>
+// 方法 1
+$provide.provider('test', {
+
+   n:1;
+
+   $get: function () {
+
+      return n;
+
+    };
+
+});
+
+// 方法 2
+$provide.provider('test', function () {
+
+   this.n = 2;
+
+   this.$get = function () {
+
+   return n;
+
+};
+
+});
+
+// 使用
+app.controller('MainCtrl', function ($scope, test) {
+    $scope.test = test;
+});
+    </pre>
+    <h4>provider方法实现</h4>
+    <pre>
+function provider(name, provider_) {
+
+  if (isFunction(provider_)) {
+
+      provider_ = providerInjector.instantiate(provider_);
+
+  }
+
+   if (!provider_.$get) {
+
+       throw Error('Provider ' + name + ' must define $get factory method.');
+
+   }
+
+   return providerCache[name + providerSuffix] = provider_;
+
+}
+    </pre>
+    可以看到 provider 的基本原则就是通过实现 $get 方法来进行单例注入，使用时获得的就是 $get 执行后的结果。
+</div>
+
+<div class="row">
+    <h3>2.Factory</h3>
+    那如果每次都要写一个 $get 是不是很麻烦？ OK，所以我们有了 factory。 factory 可以说是 provider 的变种， 方法中的第二个参数就是 $get 中的内容。
+    <pre>
+// 定义 factory
+
+$provide.factory('dd', function () {
+
+   return new Date();
+
+});
+
+// 使用
+
+app.controller('MainCtrl', function ($scope, dd) {
+
+    $scope.mydate = dd;
+
+});
+//实现源码
+function factory(name, factoryFn) {
+
+ return provider(name, {
+
+   $get: factoryFn
+
+});
+
+}
+    </pre>
+    <h3>3.Service</h3>
+    在 factory 的例子中我们还是需要 new 一个对象返回，而 service 就更简单了，这一步都帮你省了， 他的第二个参数就是你要返回的对象类， 也就是 new 的哦给你工作都不用你做了。够清爽吧？
+    下面是 service 的实现源代码：
+    <pre>
+function service(name, constructor) {
+
+  return factory(name, ['$injector', function($injector) {
+
+       return $injector.instantiate(constructor);
+
+   }]);
+}
+    </pre>
+</div>

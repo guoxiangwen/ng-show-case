@@ -1,0 +1,26 @@
+<h4>模块划分</h4>
+<hr />
+<p>
+	<h2>什么是模块?</h2>
+	在构建应用的时候,为了避免变量名、方法名的冲突.我们通常都会把它们放在不同的空间中.
+	例如: 
+	<pre>
+var Object = {
+	m1:function(){
+		//
+	}
+};
+var OtherObject = {
+	m1:function(){
+		//
+	}
+};
+Object.m1();
+OtherObject.m1();
+	</pre>
+	这样，就可以说Object,OtherObject两个对象就是两个 <strong>模块</strong>
+	在JavaScript中有AMD，CMD模块化的思想，这里只是简单的举个栗子.就不多介绍了.
+	<hr />
+	那么在<strong>Angular</strong>中。模块的划分其实和JS的语法没太多关系.更多的是在业务逻辑上的划分(个人观点).在Angular1.X版本中.有<code>controller,service,filter,directive,contant,value,factory.</code>这些东西.都是挂载在模块module下的.例如:<code>angular.module('app',[]).controller().service().</code>这样一来,就根据模块来区分了不同业务逻辑之间的controller等的归属问题.不必再纠结是否重名等烦恼.
+	<div>而且 模块之间还可以相互依赖,说直白点.就是类似java中的import 导入jar包.</div>
+</p>
